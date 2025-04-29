@@ -60,7 +60,7 @@ interface ExpertDetailsModalProps {
   onClose: () => void;
 }
 
-const API_URL = 'https://f309-2401-4900-8821-8339-e53f-becb-b8f-ba5f.ngrok-free.app';
+const API_URL = ' https://a0f5-2401-4900-8823-15fc-35bf-4af4-e76d-7961.ngrok-free.app';
 
 const BookingModal: React.FC<BookingModalProps> = ({ expert, isOpen, onClose }) => {
   const [selectedDate, setSelectedDate] = useState<string>('');
