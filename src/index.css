@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 17 24 39;
+    --text: 243 244 246;
+    --card: 31 41 55;
+    --card-hover: 55 65 81;
+    --border: 75 85 99;
+    --muted: 156 163 175;
+    --accent: 124 58 237;
+    --accent-hover: 109 40 217;
+  }
+
+  .light-mode {
+    --background: 248 250 252;  /* #F8FAFC (softer off-white) */
+    --text: 51 65 85;           /* #334155 (softer dark gray) */
+    --card: 255 255 255;        /* #FFFFFF (keep pure white) */
+    --card-hover: 241 245 249;  /* #F1F5F9 (good for hover) */
+    --border: 226 232 240;      /* #E2E8F0 (lighter gray for borders) */
+    --muted: 71 85 105;         /* #475569 (darker gray for readability) */
+    --accent: 124 58 237;       /* #7C3AED (softer purple) */
+    --accent-hover: 109 40 217; /* #6D28D9 (darker purple) */
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--text))] transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .light-mode div[class*="bg-[rgb(var(--card))]"] {
+    @apply border border-purple-200;
+  }
+}
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  @apply bg-[rgb(var(--background))] transition-colors duration-200;
+}
+
+.floating-ball {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  position: fixed;
+  z-index: -1;
+  background: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-hover)));
+  filter: blur(100px);
+  opacity: 0.25;
+  animation: float 20s linear infinite;
+}
+
+.light-mode .floating-ball {
+  opacity: 0.15;
+  background: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-hover)));
+  filter: blur(120px);
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(100px, 50px);
+  }
+  50% {
+    transform: translate(0, 100px);
+  }
+  75% {
+    transform: translate(-100px, 50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgb(var(--card));
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--muted));
+}
+
+/* Mirror video for selfie view */
+.mirror {
+  transform: scaleX(-1);
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
